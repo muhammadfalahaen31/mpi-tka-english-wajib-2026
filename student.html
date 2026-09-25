@@ -227,46 +227,6 @@
           </div>
         </div>
 
-        <!-- Developer & Academic Profile Card in Student Mode -->
-        <div class="developer-profile-card">
-          <div class="dev-profile-header">
-            <div class="dev-avatar-box">👨‍🏫</div>
-            <div>
-              <div class="dev-badge-row">
-                <span class="badge badge-blue">Lead Developer & Assessment Specialist</span>
-                <span class="badge badge-green">Certified Educator (Gr.)</span>
-              </div>
-              <h3 class="dev-name">Muhammad Falahaen Jiddan, M.Pd. Gr.</h3>
-              <p class="dev-role">Master of English Education • Instructional Technology Designer</p>
-            </div>
-          </div>
-
-          <div class="dev-details-grid">
-            <div class="dev-detail-item">
-              <div class="dev-detail-icon">🏫</div>
-              <div>
-                <div class="dev-detail-label">Institution / School</div>
-                <div class="dev-detail-value">SMA Plus PGRI Cibinong & SMA Plus PGRI Cibinong (Reguler)</div>
-              </div>
-            </div>
-
-            <div class="dev-detail-item">
-              <div class="dev-detail-icon">🎯</div>
-              <div>
-                <div class="dev-detail-label">Subject & Program</div>
-                <div class="dev-detail-value">TKA SMA English Wajib — Descriptive, Recount & Procedure Text Competency</div>
-              </div>
-            </div>
-
-            <div class="dev-detail-item">
-              <div class="dev-detail-icon">💡</div>
-              <div>
-                <div class="dev-detail-label">Pedagogical Framework</div>
-                <div class="dev-detail-value">Mindful, Meaningful & Joyful Interactive Learning (HOTS-Aligned)</div>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <div class="dashboard-hero-banner" style="background: linear-gradient(135deg, #065f46, #047857);">
           <div>
@@ -294,6 +254,7 @@
         <div class="mobile-tab-switch">
           <button class="mobile-switch-btn active" id="btn-mobile-read" onclick="switchMobileTab('read')">📖 Reading Passage</button>
           <button class="mobile-switch-btn" id="btn-mobile-quest" onclick="switchMobileTab('quest')">📝 Questions & Reasoning</button>
+          <button class="mobile-switch-btn btn-amber" id="btn-mobile-peek" onclick="openPeekPassageModal()">👁️ Peek Passage</button>
         </div>
 
         <!-- Top Toolbar with Text Size Controls -->
@@ -400,6 +361,22 @@
       <div>Designed & Developed by <strong>Muhammad Falahaen Jiddan, M.Pd. Gr.</strong> • English Educator & Assessment Specialist</div>
       <div style="font-size: 0.8rem; margin-top: 4px; color: var(--academic-blue); font-weight: 600;">SMA Plus PGRI Cibinong</div>
     </footer>
+
+    <!-- Peek Passage Modal for Mobile & Quick Reading Inspection -->
+    <div class="modal-overlay" id="peek-passage-modal" onclick="closePeekPassageModal(event)">
+      <div class="peek-modal-card" onclick="event.stopPropagation()">
+        <div class="peek-modal-header">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 1.2rem;">👁️</span>
+            <h3 id="peek-modal-title" style="margin: 0; font-size: 1.1rem; font-weight: 800; color: var(--text-main);">Reading Passage Peek</h3>
+          </div>
+          <button class="btn-close-modal" onclick="closePeekPassageModal()">✕</button>
+        </div>
+        <div class="peek-modal-body" id="peek-modal-content">
+          <!-- Active text reading passage paragraphs injected here -->
+        </div>
+      </div>
+    </div>
 
     <!-- Toast Notification Container -->
     <div class="toast-container" id="student-toast-container"></div>
