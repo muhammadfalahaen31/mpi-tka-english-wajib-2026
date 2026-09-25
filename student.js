@@ -103,6 +103,45 @@ function saveStudentIdentity() {
   saveStudentData();
 }
 
+// Web Speech API for Word Pronunciation in Student Mode
+function speakWord(word) {
+  if (!('speechSynthesis' in window)) {
+    alert('Speech synthesis is not supported in this browser.');
+    return;
+  }
+
+  try {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(word);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.85;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+
+    let voices = window.speechSynthesis.getVoices();
+    if (voices && voices.length > 0) {
+      const enVoice = voices.find(v => v.lang.startsWith('en-US') || v.lang.startsWith('en-GB') || v.lang.startsWith('en'));
+      if (enVoice) utterance.voice = enVoice;
+    }
+
+    if (window.speechSynthesis.paused) {
+      window.speechSynthesis.resume();
+    }
+
+    setTimeout(() => {
+      window.speechSynthesis.speak(utterance);
+    }, 60);
+  } catch (e) {
+    console.error('Audio TTS error:', e);
+  }
+}
+
+if ('speechSynthesis' in window) {
+  window.speechSynthesis.onvoiceschanged = () => {
+    try { window.speechSynthesis.getVoices(); } catch (e) {}
+  };
+}
+
 function setStudentView(viewName, textId = null) {
   StudentState.currentView = viewName;
   if (textId) StudentState.selectedTextId = textId;
@@ -118,6 +157,7 @@ function setStudentView(viewName, textId = null) {
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
   renderStudentApp();
+  updateFloatingPeekVisibility();
 }
 
 function openStudentTextWorkspace(textId, qIdx = 0) {
@@ -144,41 +184,61 @@ function switchMobileTab(tab) {
     if (rightPanel) rightPanel.classList.remove('mobile-hidden');
     if (leftPanel) leftPanel.classList.add('mobile-hidden');
   }
+  updateFloatingPeekVisibility();
+}
+
+// Floating Bottom-Right (Kanan Bawah) Peek Passage Popup Handler
+function togglePeekPassagePopup(forceState) {
+  const popupCard = document.getElementById('peek-popup-card');
+  if (!popupCard) return;
+
+  const isCurrentlyActive = popupCard.classList.contains('active');
+  const shouldOpen = typeof forceState === 'boolean' ? forceState : !isCurrentlyActive;
+
+  if (shouldOpen) {
+    const textData = TKA_DATA.texts.find(t => t.id === StudentState.selectedTextId);
+    if (textData) {
+      const modalTitle = document.getElementById('peek-popup-title');
+      const modalContent = document.getElementById('peek-popup-content');
+      if (modalTitle) modalTitle.textContent = `${textData.number}: ${textData.title}`;
+      if (modalContent) {
+        modalContent.innerHTML = '';
+        const readingFontSize = getStudentFontSizeStyle(StudentState.fontSizeLevel, 'reading');
+        modalContent.style.setProperty('--reading-font-size', readingFontSize);
+        modalContent.style.fontFamily = StudentState.fontFamily === 'sans' ? 'var(--font-sans)' : 'var(--font-serif)';
+
+        textData.paragraphs.forEach((pText, idx) => {
+          const pEl = document.createElement('div');
+          pEl.className = 'reading-paragraph';
+          pEl.style.marginBottom = '12px';
+          pEl.innerHTML = `<span class="p-number">P${idx + 1}</span>${pText.replace(/\n/g, '<br>')}`;
+          modalContent.appendChild(pEl);
+        });
+      }
+    }
+    popupCard.classList.add('active');
+  } else {
+    popupCard.classList.remove('active');
+  }
+}
+
+function updateFloatingPeekVisibility() {
+  const container = document.getElementById('peek-floating-container');
+  if (!container) return;
+  if (StudentState.currentView === 'text_workspace') {
+    container.style.display = 'flex';
+  } else {
+    container.style.display = 'none';
+    togglePeekPassagePopup(false);
+  }
 }
 
 function openPeekPassageModal() {
-  const textData = TKA_DATA.texts.find(t => t.id === StudentState.selectedTextId);
-  if (!textData) return;
-
-  const modalTitle = document.getElementById('peek-modal-title');
-  const modalContent = document.getElementById('peek-modal-content');
-  const modalOverlay = document.getElementById('peek-passage-modal');
-
-  if (modalTitle) modalTitle.textContent = `${textData.number}: ${textData.title}`;
-  
-  if (modalContent) {
-    modalContent.innerHTML = '';
-    const readingFontSize = getStudentFontSizeStyle(StudentState.fontSizeLevel, 'reading');
-    modalContent.style.setProperty('--reading-font-size', readingFontSize);
-    modalContent.style.fontFamily = StudentState.fontFamily === 'sans' ? 'var(--font-sans)' : 'var(--font-serif)';
-
-    textData.paragraphs.forEach((pText, idx) => {
-      const pEl = document.createElement('div');
-      pEl.className = 'reading-paragraph';
-      pEl.innerHTML = `<span class="p-number">P${idx + 1}</span>${pText.replace(/\n/g, '<br>')}`;
-      modalContent.appendChild(pEl);
-    });
-  }
-
-  if (modalOverlay) modalOverlay.classList.add('active');
+  togglePeekPassagePopup(true);
 }
 
 function closePeekPassageModal(event) {
-  if (event && event.target && event.target !== event.currentTarget && !event.target.classList.contains('btn-close-modal')) {
-    return;
-  }
-  const modalOverlay = document.getElementById('peek-passage-modal');
-  if (modalOverlay) modalOverlay.classList.remove('active');
+  togglePeekPassagePopup(false);
 }
 
 function renderStudentApp() {
