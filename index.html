@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MPI TKA ENGLISH WAJIB — Descriptive, Recount & Procedure Text Practice (Texts 1–6 | Questions 1–32)</title>
+  <meta name="description" content="Media Pembelajaran Interaktif (MPI) TKA Bahasa Inggris SMA - Descriptive, Recount, & Procedure Text dengan Kunci Resmi, Bukti Tekstual, dan Analisis Pengecoh Lengkap.">
+  
+  <!-- Google Fonts: Inter & Merriweather -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- ==========================================
+         TOP NAVIGATION BAR (TEACHER MODE)
+    ========================================== -->
+    <header class="navbar">
+      <div class="nav-brand" onclick="setView('dashboard')">
+        <span class="brand-badge">MPI TKA GURU</span>
+        <span class="brand-title">English Wajib</span>
+      </div>
+
+      <nav>
+        <ul class="nav-links">
+          <li class="nav-item active" data-view="dashboard" onclick="setView('dashboard')">📊 Dashboard</li>
+          <li class="nav-item" data-view="vocab_lab" onclick="setView('vocab_lab')">📚 Vocabulary Lab</li>
+          <li class="nav-item" data-view="tka_strategy" onclick="setView('tka_strategy')">🎯 TKA Strategy</li>
+          <li class="nav-item" data-view="final_review" onclick="setView('final_review')">🎓 Final Report</li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Dark/Light Mode Switcher -->
+        <button class="btn-theme-toggle" id="btn-theme-toggle" onclick="toggleTheme()">
+          <span id="theme-icon">🌙</span> <span id="theme-label">Dark Mode</span>
+        </button>
+        <button class="btn btn-danger btn-sm" onclick="openResetModal()">🔄 Reset</button>
+      </div>
+    </header>
+
+    <!-- ==========================================
+         MAIN CONTENT VIEWS
+    ========================================== -->
+    <main class="main-view">
+
+      <!-- 1. LANDING PAGE VIEW -->
+      <section id="view-landing" class="view-section active">
+        <div class="hero-container">
+          <div class="hero-card">
+            <span class="hero-subtitle-tag">MEDIA PEMBELAJARAN INTERAKTIF GURU</span>
+            <h1 class="hero-title">MPI TKA ENGLISH WAJIB</h1>
+            <h2 class="hero-subtitle">Descriptive, Recount & Procedure Text Practice</h2>
+            <p class="hero-scope">Texts 1–6 | Questions 1–32 • Sesuai Modul Resmi</p>
+
+            <div class="hero-features-grid">
+              <div class="hero-feature-item">
+                <h4>🧠 Mindful Learning</h4>
+                <p>Pahami proses berpikir, kenali tipe soal TKA, dan pelajari analisis mendalam alasan setiap opsi salah.</p>
+              </div>
+              <div class="hero-feature-item">
+                <h4>🔍 Meaningful Learning</h4>
+                <p>Hubungkan setiap jawaban dengan bukti tekstual autentik dari paragraf bacaan secara langsung.</p>
+              </div>
+              <div class="hero-feature-item">
+                <h4>✨ Joyful Learning</h4>
+                <p>Belajar interaktif dengan Audio Pronunciation TTS, 3D Flip Cards, Matching Game, dan Instant Feedback.</p>
+              </div>
+            </div>
+
+            <div>
+              <button class="btn btn-primary btn-lg" onclick="setView('dashboard')">
+                🚀 START LEARNING
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. DASHBOARD VIEW -->
+      <section id="view-dashboard" class="view-section">
+        
+        <!-- Welcome Hero Banner -->
+        <div class="dashboard-hero-banner">
+          <div>
+            <div class="dash-banner-title">Welcome to MPI TKA English Wajib 2026</div>
+            <p class="dash-banner-subtitle">Kuasai analisis teks deskriptif, rekon, dan prosedur dengan antarmuka side-by-side: teks bacaan di kiri dan soal latihan di kanan.</p>
+          </div>
+          <div>
+            <button class="btn btn-primary btn-lg" style="background: white; color: #1e3a8a;" onclick="openTextWorkspace(1)">
+              📖 Start with Text 1 →
+            </button>
+          </div>
+        </div>
+
+        <!-- Developer & Academic Profile Card (Top Position) -->
+        <div class="developer-profile-card">
+          <div class="dev-profile-header">
+            <div class="dev-avatar-box">👨‍🏫</div>
+            <div>
+              <div class="dev-badge-row">
+                <span class="badge badge-blue">Lead Developer & English Assessment Specialist</span>
+                <span class="badge badge-green">Certified Educator (Gr.)</span>
+              </div>
+              <h3 class="dev-name">Muhammad Falahaen Jiddan, M.Pd. Gr.</h3>
+              <p class="dev-role">Master of English Education • Instructional Technology Designer</p>
+            </div>
+          </div>
+
+          <div class="dev-details-grid">
+            <div class="dev-detail-item">
+              <div class="dev-detail-icon">🏫</div>
+              <div>
+                <div class="dev-detail-label">Institution / School</div>
+                <div class="dev-detail-value">SMA Plus PGRI Cibinong & SMA Plus PGRI Cibinong (Reguler)</div>
+              </div>
+            </div>
+
+            <div class="dev-detail-item">
+              <div class="dev-detail-icon">🎯</div>
+              <div>
+                <div class="dev-detail-label">Subject & Program</div>
+                <div class="dev-detail-value">TKA SMA English Wajib — Descriptive, Recount & Procedure Text Competency</div>
+              </div>
+            </div>
+
+            <div class="dev-detail-item">
+              <div class="dev-detail-icon">💡</div>
+              <div>
+                <div class="dev-detail-label">Pedagogical Framework</div>
+                <div class="dev-detail-value">Mindful, Meaningful & Joyful Interactive Learning (HOTS-Aligned)</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dev-bio-quote">
+            "Designed to empower senior high school students with systematic reading strategies, in-depth textual evidence verification, and authentic TKA question mastery through modern interactive technology."
+          </div>
+        </div>
+
+        <!-- Direct Hub Cards: Vocab Lab & TKA Strategy -->
+        <div class="dash-hub-grid">
+          <div class="dash-hub-card" onclick="setView('vocab_lab')">
+            <div class="hub-card-left">
+              <div class="hub-icon-box">📚</div>
+              <div>
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">Vocabulary Lab</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">90 Kosakata rumit akademis dari Text 1–6 (15 per teks), Audio Pengucapan, Flip Cards & Matching Game.</p>
+              </div>
+            </div>
+            <span class="btn btn-outline btn-sm">Open Lab →</span>
+          </div>
+
+          <div class="dash-hub-card" onclick="setView('tka_strategy')">
+            <div class="hub-card-left">
+              <div class="hub-icon-box" style="background: var(--accent-amber-light); color: var(--accent-amber);">🎯</div>
+              <div>
+                <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">TKA Strategy Guide</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">Formula & metode sistematis menjawab tipe soal TKA Descriptive, Recount, & Procedure.</p>
+              </div>
+            </div>
+            <span class="btn btn-outline btn-sm">View Strategy →</span>
+          </div>
+        </div>
+
+        <!-- Global Stats Overview -->
+        <div class="overview-stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">📝</div>
+            <div>
+              <div class="stat-val" id="stat-total-questions">0/32</div>
+              <div class="stat-label">Questions Completed</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🎯</div>
+            <div>
+              <div class="stat-val" id="stat-total-accuracy">0%</div>
+              <div class="stat-label">Overall Accuracy</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📖</div>
+            <div>
+              <div class="stat-val">6 Texts</div>
+              <div class="stat-label">Reading Text Sets</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📚</div>
+            <div>
+              <div class="stat-val">90 Words</div>
+              <div class="stat-label">Vocabulary Bank (15 per text)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6 Text Modules Grid -->
+        <div class="text-cards-grid" id="dashboard-text-cards">
+          <!-- Dynamically injected text cards -->
+        </div>
+
+        <!-- Learning Modes Hub -->
+        <div class="mode-triggers-grid">
+          <div>
+            <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--text-main); margin-bottom: 4px;">🚀 Complete Exam & Challenge Hub</h3>
+            <p style="font-size: 0.92rem; color: var(--text-muted);">Kerjakan simulasi ujian penuh (32 soal), acak urutan soal, atau fokus mendalami soal yang pernah salah.</p>
+          </div>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <button class="btn btn-outline" onclick="startTestMode('random')">🎲 Random Mode</button>
+            <button class="btn btn-outline" onclick="startTestMode('review_mistakes')">⚠️ Review Mistakes</button>
+            <button class="btn btn-primary" onclick="startTestMode('full_test')">⏱️ Full Test (32 Qs)</button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 3. SIDE-BY-SIDE TEXT WORKSPACE (LEFT: READ TEXT | RIGHT: PRACTICE QUESTIONS) -->
+      <section id="view-text_workspace" class="view-section">
+        
+        <!-- Top Toolbar -->
+        <div class="workspace-top-bar">
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <button class="btn btn-secondary btn-sm" onclick="setView('dashboard')">← Dashboard</button>
+            <div id="workspace-text-title" style="font-size: 1.15rem; font-weight: 800; color: var(--text-main);"></div>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div class="font-size-control-group">
+              <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-right: 4px;">Text Size:</span>
+              <button class="btn-font-ctrl" onclick="changeFontSize(-1)">A-</button>
+              <button class="btn-font-ctrl" onclick="changeFontSize(0)">Default</button>
+              <button class="btn-font-ctrl" onclick="changeFontSize(1)">A+</button>
+              <button class="btn-font-ctrl" onclick="toggleFontFamily()" style="margin-left: 6px;">Font: <span id="font-family-label">Sans-Serif</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Split Grid Container -->
+        <div class="workspace-split-container">
+          
+          <!-- LEFT PANEL: READING TEXT -->
+          <div class="workspace-left-panel" id="workspace-left-reading-panel">
+            <h2 class="reading-article-title" id="ws-reading-title"></h2>
+            <div class="reading-citation" id="ws-reading-citation"></div>
+            <div id="ws-reading-content">
+              <!-- Paragraphs injected here -->
+            </div>
+          </div>
+
+          <!-- RIGHT PANEL: PRACTICE QUESTIONS & INSTANT FEEDBACK -->
+          <div class="workspace-right-panel" id="workspace-right-practice-panel">
+            
+            <div class="practice-header-bar">
+              <span style="font-weight: 800; color: var(--text-main); font-size: 1.05rem;">Questions:</span>
+              <div class="practice-q-nav" id="ws-practice-q-nav">
+                <!-- Pills injected -->
+              </div>
+            </div>
+
+            <!-- Main Question Canvas -->
+            <div id="ws-practice-canvas">
+              <!-- Question or Review Injected -->
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 4. GLOBAL VOCABULARY LAB VIEW -->
+      <section id="view-vocab_lab" class="view-section">
+        <div class="global-vocab-container">
+          
+          <div style="background: var(--bg-card); padding: 24px 30px; border-radius: 14px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+            <div>
+              <h2 style="font-size: 1.6rem; font-weight: 900; color: var(--text-main); margin-bottom: 4px;">📚 Vocabulary Lab (90 Words)</h2>
+              <p style="font-size: 0.95rem; color: var(--text-muted);">Eksplorasi 90 kosakata rumit pilihan (15 kata per teks dari Text 1 hingga Text 6) lengkap dengan pengucapan audio & latihan interaktif.</p>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="setView('dashboard')">← Back to Dashboard</button>
+          </div>
+
+          <!-- Filter by Text -->
+          <div class="vocab-filter-pills">
+            <button class="vocab-filter-pill active" data-textfilter="all" onclick="filterVocabByText('all')">All Texts (90 Words)</button>
+            <button class="vocab-filter-pill" data-textfilter="1" onclick="filterVocabByText(1)">Text 1: Tristan da Cunha (15)</button>
+            <button class="vocab-filter-pill" data-textfilter="2" onclick="filterVocabByText(2)">Text 2: Cillian Murphy (15)</button>
+            <button class="vocab-filter-pill" data-textfilter="3" onclick="filterVocabByText(3)">Text 3: Global Seed Vault (15)</button>
+            <button class="vocab-filter-pill" data-textfilter="4" onclick="filterVocabByText(4)">Text 4: Vanessa Nakate (15)</button>
+            <button class="vocab-filter-pill" data-textfilter="5" onclick="filterVocabByText(5)">Text 5: Desmond Tutu (15)</button>
+            <button class="vocab-filter-pill" data-textfilter="6" onclick="filterVocabByText(6)">Text 6: EcoClin Vacuum (15)</button>
+          </div>
+
+          <!-- Activity Nav -->
+          <div class="vocab-activity-nav">
+            <button class="vocab-mode-btn active" data-mode="flipcard" onclick="setGlobalVocabActivity('flipcard')">🎴 Activity 1: Flip Cards</button>
+            <button class="vocab-mode-btn" data-mode="matching" onclick="setGlobalVocabActivity('matching')">🧩 Activity 2: Match the Word</button>
+            <button class="vocab-mode-btn" data-mode="context" onclick="setGlobalVocabActivity('context')">💡 Activity 3: Context Challenge</button>
+            <button class="vocab-mode-btn" data-mode="list" onclick="setGlobalVocabActivity('list')">📋 Word Master Table</button>
+          </div>
+
+          <!-- Content Canvas -->
+          <div id="global-vocab-content-area"></div>
+
+        </div>
+      </section>
+
+      <!-- 5. GLOBAL TKA STRATEGY VIEW -->
+      <section id="view-tka_strategy" class="view-section">
+        <div class="strategy-container">
+          
+          <div style="background: var(--bg-card); padding: 24px 30px; border-radius: 14px; border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+            <div>
+              <h2 style="font-size: 1.6rem; font-weight: 900; color: var(--text-main); margin-bottom: 4px;">🎯 TKA Strategy & Question Formulas</h2>
+              <p style="font-size: 0.95rem; color: var(--text-muted);">Panduan metode dan formula berpikir sistematis untuk jenis soal TKA Descriptive, Recount, dan Procedure Text.</p>
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="setView('dashboard')">← Back to Dashboard</button>
+          </div>
+
+          <div class="strategy-grid" id="global-strategy-cards-container">
+            <!-- Strategy cards injected here -->
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 6. FINAL TKA REVIEW & REPORT -->
+      <section id="view-final_review" class="view-section">
+        <div id="final-review-container">
+          <!-- Injected dynamically -->
+        </div>
+      </section>
+
+      <!-- 7. FULL TEST / CHALLENGE MODE -->
+      <section id="view-full_test" class="view-section">
+        <div id="full-test-container" style="max-width: 980px; margin: 0 auto;">
+          <!-- Injected dynamically -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ==========================================
+         MODALS & OVERLAYS
+    ========================================== -->
+    <div class="modal-overlay" id="reset-confirm-modal">
+      <div class="modal-content">
+        <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--accent-red); margin-bottom: 12px;">⚠️ Reset Learning Progress?</h3>
+        <p style="font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.6;">
+          Are you sure you want to reset all your learning progress, answered questions, and scores? This action cannot be undone.
+        </p>
+        <div style="display: flex; justify-content: flex-end; gap: 12px;">
+          <button class="btn btn-secondary" onclick="closeModal('reset-confirm-modal')">Cancel</button>
+          <button class="btn btn-danger" onclick="confirmResetProgress()">Yes, Reset Everything</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="generic-modal">
+      <div class="modal-content" style="max-width: 760px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <h3 id="generic-modal-title" style="font-size: 1.3rem; font-weight: 800; color: var(--text-main);"></h3>
+          <button class="btn btn-secondary btn-sm" onclick="closeModal('generic-modal')">✕</button>
+        </div>
+        <div id="generic-modal-body"></div>
+      </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
