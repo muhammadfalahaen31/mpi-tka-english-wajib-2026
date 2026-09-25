@@ -146,6 +146,41 @@ function switchMobileTab(tab) {
   }
 }
 
+function openPeekPassageModal() {
+  const textData = TKA_DATA.texts.find(t => t.id === StudentState.selectedTextId);
+  if (!textData) return;
+
+  const modalTitle = document.getElementById('peek-modal-title');
+  const modalContent = document.getElementById('peek-modal-content');
+  const modalOverlay = document.getElementById('peek-passage-modal');
+
+  if (modalTitle) modalTitle.textContent = `${textData.number}: ${textData.title}`;
+  
+  if (modalContent) {
+    modalContent.innerHTML = '';
+    const readingFontSize = getStudentFontSizeStyle(StudentState.fontSizeLevel, 'reading');
+    modalContent.style.setProperty('--reading-font-size', readingFontSize);
+    modalContent.style.fontFamily = StudentState.fontFamily === 'sans' ? 'var(--font-sans)' : 'var(--font-serif)';
+
+    textData.paragraphs.forEach((pText, idx) => {
+      const pEl = document.createElement('div');
+      pEl.className = 'reading-paragraph';
+      pEl.innerHTML = `<span class="p-number">P${idx + 1}</span>${pText.replace(/\n/g, '<br>')}`;
+      modalContent.appendChild(pEl);
+    });
+  }
+
+  if (modalOverlay) modalOverlay.classList.add('active');
+}
+
+function closePeekPassageModal(event) {
+  if (event && event.target && event.target !== event.currentTarget && !event.target.classList.contains('btn-close-modal')) {
+    return;
+  }
+  const modalOverlay = document.getElementById('peek-passage-modal');
+  if (modalOverlay) modalOverlay.classList.remove('active');
+}
+
 function renderStudentApp() {
   if (StudentState.currentView === 'dashboard') {
     renderStudentDashboard();
@@ -309,9 +344,12 @@ function renderStudentRightPanel(questions, currentQ) {
   const studentNote = StudentState.reasoning[currentQ.id] || '';
 
   let qHtml = `
-    <div class="q-badge-row">
-      <span class="badge badge-blue">${currentQ.number} (${currentQ.genre})</span>
-      <span class="badge badge-cyan">🎯 ${strategy ? strategy.name : currentQ.strategyId}</span>
+    <div class="q-badge-row" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+      <div style="display: flex; gap: 6px; flex-wrap: wrap; align-items: center;">
+        <span class="badge badge-blue">${currentQ.number} (${currentQ.genre})</span>
+        <span class="badge badge-cyan">🎯 ${strategy ? strategy.name : currentQ.strategyId}</span>
+      </div>
+      <button class="btn btn-amber btn-sm" onclick="openPeekPassageModal()">👁️ Peek Passage</button>
     </div>
     
     <div class="q-title-text">${currentQ.question}</div>
