@@ -116,17 +116,47 @@ function showToast(message, type = 'info') {
   }, 3200);
 }
 
-// Web Speech API for Word Pronunciation
+// Web Speech API for Word Pronunciation (Failsafe for Mobile & Desktop)
 function speakWord(word) {
-  if ('speechSynthesis' in window) {
+  if (!('speechSynthesis' in window)) {
+    if (typeof showToast === 'function') {
+      showToast('Speech synthesis is not supported in this browser.', 'error');
+    } else {
+      alert('Speech synthesis is not supported in this browser.');
+    }
+    return;
+  }
+
+  try {
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(word);
     utterance.lang = 'en-US';
     utterance.rate = 0.85;
-    window.speechSynthesis.speak(utterance);
-  } else {
-    showToast('Speech synthesis not supported in this browser.', 'error');
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+
+    let voices = window.speechSynthesis.getVoices();
+    if (voices && voices.length > 0) {
+      const enVoice = voices.find(v => v.lang.startsWith('en-US') || v.lang.startsWith('en-GB') || v.lang.startsWith('en'));
+      if (enVoice) utterance.voice = enVoice;
+    }
+
+    if (window.speechSynthesis.paused) {
+      window.speechSynthesis.resume();
+    }
+
+    setTimeout(() => {
+      window.speechSynthesis.speak(utterance);
+    }, 60);
+  } catch (e) {
+    console.error('Audio TTS error:', e);
   }
+}
+
+if ('speechSynthesis' in window) {
+  window.speechSynthesis.onvoiceschanged = () => {
+    try { window.speechSynthesis.getVoices(); } catch (e) {}
+  };
 }
 
 function setupGlobalEvents() {
