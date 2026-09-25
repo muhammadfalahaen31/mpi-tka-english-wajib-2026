@@ -1704,6 +1704,66 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
+.btn-amber {
+  background-color: var(--accent-amber-light);
+  color: var(--accent-amber);
+  border: 1px solid #fcd34d;
+}
+
+.btn-amber:hover {
+  background-color: #fef3c7;
+  transform: translateY(-1px);
+}
+
+.peek-modal-card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  max-width: 760px;
+  width: 94%;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  transform: scale(0.95);
+  transition: transform 0.2s ease;
+}
+
+.modal-overlay.active .peek-modal-card {
+  transform: scale(1);
+}
+
+.peek-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 14px;
+}
+
+.peek-modal-body {
+  overflow-y: auto;
+  padding-right: 8px;
+  font-size: var(--reading-font-size, 1.05rem);
+  line-height: 1.7;
+}
+
+.btn-close-modal {
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  font-weight: 800;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.btn-close-modal:hover {
+  color: var(--accent-red);
+}
+
 @media (max-width: 1024px) {
   .workspace-split-container {
     grid-template-columns: 1fr;
@@ -1721,17 +1781,52 @@ body {
 
 @media (max-width: 768px) {
   .main-view {
-    padding: 16px;
+    padding: 10px;
   }
   .navbar {
     flex-direction: column;
-    gap: 12px;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+  .nav-brand {
+    gap: 6px;
+  }
+  .brand-badge {
+    font-size: 0.72rem;
+    padding: 3px 8px;
+  }
+  .brand-title {
+    font-size: 1rem;
   }
   .nav-links {
     flex-wrap: wrap;
     justify-content: center;
+    gap: 4px;
+  }
+  .nav-item {
+    padding: 5px 8px;
+    font-size: 0.8rem;
   }
   .hero-title {
-    font-size: 2.2rem;
+    font-size: 1.8rem;
+  }
+  .student-id-card {
+    padding: 14px 16px;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .workspace-top-bar {
+    padding: 10px 12px;
+    gap: 8px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .mobile-tab-switch {
+    margin-bottom: 10px;
+    padding: 4px;
+  }
+  .mobile-switch-btn {
+    padding: 8px;
+    font-size: 0.82rem;
   }
 }
