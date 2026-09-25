@@ -322,11 +322,6 @@
             <!-- Injected via JS -->
           </div>
 
-          <div class="vocab-activity-nav">
-            <button class="vocab-mode-btn active" data-mode="flipcard" onclick="setStudentVocabActivity('flipcard')">🎴 Activity 1: Flip Cards</button>
-            <button class="vocab-mode-btn" data-mode="matching" onclick="setStudentVocabActivity('matching')">🧩 Activity 2: Match the Word</button>
-            <button class="vocab-mode-btn" data-mode="list" onclick="setStudentVocabActivity('list')">📋 Word Master Table</button>
-          </div>
 
           <div id="student-vocab-content-area"></div>
         </div>
@@ -361,6 +356,26 @@
       <div>Designed & Developed by <strong>Muhammad Falahaen Jiddan, M.Pd. Gr.</strong> • English Educator & Assessment Specialist</div>
       <div style="font-size: 0.8rem; margin-top: 4px; color: var(--academic-blue); font-weight: 600;">SMA Plus PGRI Cibinong</div>
     </footer>
+
+    <!-- Floating Peek Passage Pop-Up Widget (Bottom-Right / Kanan Bawah) -->
+    <div class="peek-floating-container" id="peek-floating-container" style="display: none;">
+      <div class="peek-popup-card" id="peek-popup-card">
+        <div class="peek-popup-header">
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span>📖</span>
+            <span id="peek-popup-title" style="font-weight: 800; font-size: 0.9rem;">Reading Passage Peek</span>
+          </div>
+          <button class="btn-close-modal" onclick="togglePeekPassagePopup(false)" style="color: white; font-size: 1.2rem; background: none; border: none; cursor: pointer;">✕</button>
+        </div>
+        <div class="peek-popup-body" id="peek-popup-content">
+          <!-- Active text reading passage paragraphs injected here -->
+        </div>
+      </div>
+
+      <button class="btn-peek-fab" id="btn-peek-fab" onclick="togglePeekPassagePopup()">
+        <span>👁️</span> <span>Peek Passage</span>
+      </button>
+    </div>
 
     <!-- Peek Passage Modal for Mobile & Quick Reading Inspection -->
     <div class="modal-overlay" id="peek-passage-modal" onclick="closePeekPassageModal(event)">
